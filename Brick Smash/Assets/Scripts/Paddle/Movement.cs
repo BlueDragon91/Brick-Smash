@@ -21,15 +21,11 @@ public class Movement : MonoBehaviour
     // Paddle Movement
     private void movePaddle()
     {
-        float hrz = Input.GetAxis("Horizontal");
-        float ver = Input.GetAxis("Vertical");
+        float hrz = Input.GetAxisRaw("Horizontal");
+        //float ver = Input.GetAxis("Vertical");
 
-        body.velocity = new Vector2(hrz * speed, ver * speed);
+        body.velocity = new Vector2(Mathf.Clamp(hrz * speed, -15, 15), transform.position.y);
     }
 
-    private void rotation()
-    {
-        
-
-    }
+    
 }
