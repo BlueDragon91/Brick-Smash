@@ -9,26 +9,26 @@ public class BrickCollision : MonoBehaviour
     private int maxHit;
     public Sprite[] sprites;
     private GameObject brick;
-    private bool breakable = true;
+    public int Points = 100;
+    public bool unbreakable;
 
-    // Start is called before the first frame update
+   
     void Awake()
     {
         this.render = GetComponent<SpriteRenderer>();
         brick = this.gameObject;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
- 
+        
     }
 
     // bricks disappear when the ball collides with it
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if(breakable)
+        if(!unbreakable && collision.gameObject.tag == "Ball")
         {
             hitBrick();
         }
@@ -47,6 +47,8 @@ public class BrickCollision : MonoBehaviour
         {
             changeSprites();
         }
+
+        FindAnyObjectByType<GameManager>().Hit(this);
     }
 
     private void changeSprites()

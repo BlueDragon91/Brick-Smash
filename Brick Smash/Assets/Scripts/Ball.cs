@@ -14,7 +14,7 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ResetBall();
         
     }
 
@@ -33,5 +33,15 @@ public class Ball : MonoBehaviour
         forceDir.y = -1f;
 
         body.AddForce(forceDir.normalized * speed);
+    }
+
+    public void ResetBall()
+    {
+        // sets the ball at center position before invoke method runs
+        this.transform.position = Vector2.zero;
+        this.body.velocity = Vector2.zero;
+        
+        // run the ballLaunch method after 1 second delay
+        Invoke(nameof(ballLaunch), 1f); 
     }
 }

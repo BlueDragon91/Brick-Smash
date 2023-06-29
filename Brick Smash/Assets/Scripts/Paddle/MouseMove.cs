@@ -5,18 +5,19 @@ using UnityEngine;
 public class MouseMove : MonoBehaviour
 {
     //#region Variable Declaration
-    //public Rigidbody2D rigidbody2;
+    public Rigidbody2D body { get; private set; }
     [SerializeField] private float speed; // Rotation Speed
     [SerializeField] private float min;
     [SerializeField] private float max;
     private float mouseX;
-    float maxBounceAngle = 60f;
+    float maxBounceAngle = 70f;
 
     private void Start()
     {
         min = Camera.main.ViewportToScreenPoint(new Vector3(0, 0, 0)).x;
         max = Camera.main.ViewportToScreenPoint(new Vector3(1, 1, 1)).x;
 
+        body = this.GetComponent<Rigidbody2D>();
     }
 
     //#region Update
@@ -34,7 +35,7 @@ public class MouseMove : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)  // Creates the ball's bounce reflection, which is going to be reflected at maxBounceAngle
     {
         Ball ball = collision.gameObject.GetComponent<Ball>();
 
@@ -55,7 +56,11 @@ public class MouseMove : MonoBehaviour
         }
     }
 
-
+    public void ResetPaddle()
+    {
+        this.transform.position = new Vector2(0f, transform.position.y);
+        this.body.velocity = Vector2.zero;
+    }
 
     // #endregion
 
