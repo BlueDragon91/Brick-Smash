@@ -5,7 +5,7 @@ using UnityEngine;
 public class BrickCollision : MonoBehaviour
 {
     private SpriteRenderer render;
-    public int hitCount;
+    private int hitCount;
     private int maxHit;
     public Sprite[] sprites;
     private GameObject brick;
@@ -41,7 +41,7 @@ public class BrickCollision : MonoBehaviour
         maxHit = sprites.Length + 1;
         if(hitCount >= maxHit)
         {
-            Destroy(brick);
+            brick.SetActive(false);
         }
         else
         {
