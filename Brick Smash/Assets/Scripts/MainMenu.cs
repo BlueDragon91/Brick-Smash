@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     {
         //if (Input.GetKeyDown(KeyCode.Escape))
         //{
-        //    QuitGame();
+        //    UnityEditor.EditorApplication.isPlaying = false;
         //}
     }
     public void QuitGame()
