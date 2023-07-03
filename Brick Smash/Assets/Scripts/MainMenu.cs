@@ -1,30 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private AudioSource BGSound;
     public void StartGame()
     {
+        BGSound.Play();
         SceneManager.LoadScene("_main");
-    }
-
-    public void ExitButton()
-    {
-        
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            QuitGame();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    QuitGame();
+        //}
     }
     public void QuitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
         Debug.Log("<b>Khel Samapti ki Ghoshana</b>");
     }
 }

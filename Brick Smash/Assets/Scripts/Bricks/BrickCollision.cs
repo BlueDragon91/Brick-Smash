@@ -11,7 +11,7 @@ public class BrickCollision : MonoBehaviour
     private GameObject brick;
     public int Points = 100;
     public bool unbreakable;
-
+    //[SerializeField] private AudioSource BallCollisionSound;
    
     void Awake()
     {
@@ -27,8 +27,8 @@ public class BrickCollision : MonoBehaviour
     // bricks disappear when the ball collides with it
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if(!unbreakable && collision.gameObject.tag == "Ball")
+        //BallCollisionSound.Play();
+        if (!unbreakable && collision.gameObject.tag == "Ball")
         {
             hitBrick();
         }
@@ -37,6 +37,7 @@ public class BrickCollision : MonoBehaviour
 
     private void hitBrick()
     {
+        
         hitCount++;
         maxHit = sprites.Length + 1;
         if(hitCount >= maxHit)

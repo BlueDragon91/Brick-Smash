@@ -6,10 +6,12 @@ public class MouseMove : MonoBehaviour
 {
     //#region Variable Declaration
     public Rigidbody2D body { get; private set; }
-    [SerializeField] private float speed; // Rotation Speed
+    //[SerializeField] private float speed; // Rotation Speed
     
     private float mouseX;
     float maxBounceAngle = 70f;
+
+    //[SerializeField] private AudioSource BallCollisionSound;
 
     private void Start()
     {
@@ -28,8 +30,10 @@ public class MouseMove : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)  // Creates the ball's bounce reflection, which is going to be reflected at maxBounceAngle
+    private void OnCollisionEnter2D(Collision2D collision)  // Creates the ball's bounce reflection, which is going to be reflected at "maxBounceAngle" at max
     {
+        //BallCollisionSound.Play(); // plays the sound when the ball collides with the paddle
+
         Ball ball = collision.gameObject.GetComponent<Ball>();
 
         if(ball != null)

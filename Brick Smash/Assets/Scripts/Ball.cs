@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
 {
     public Rigidbody2D body { get; private set; }
     [SerializeField] private float speed = 500f;
+    [SerializeField] private AudioSource BallCollisionSound;
 
     private void Awake()
     {
@@ -24,6 +25,12 @@ public class Ball : MonoBehaviour
         // pressing Space Bar will launch the Ball towards the Paddle
         if (Input.GetKeyDown(KeyCode.Space))
             ballLaunch();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Paddle" || collision.gameObject.tag == "Bricks")
+            BallCollisionSound.Play();
     }
 
     private void ballLaunch()
