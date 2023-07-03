@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     }
 
     
-
+    // creates the new game and launches the level 1 with score = 0 and life = 3
     public void NewGame()
     {
         this.lives = 3;
@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         NextLevel(1);
     }
 
+    // loads the next level 
     private void NextLevel(int level)
     {
         this.level = level;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("level" + level);
     }
 
+    // keep the following object when the next level is loaded
     private void OnLevelLoaded(Scene scene, LoadSceneMode sceneMode)
     {
         this.ball = FindObjectOfType<Ball>();
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
         this.Bricks = FindObjectsOfType<BrickCollision>();
     }
 
+    // increment the scores on every brick break and loads the next level when all the breakable bricks are gone
     public void Hit(BrickCollision Brick)
     {
         this.scores += Brick.Points;
@@ -64,6 +67,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // checks if all the breakable bricks are cleared
     public bool cleared()
     {
         for (int i = 0; i < Bricks.Length; i++)
@@ -77,12 +81,15 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+
+    // resets the position of ball and paddle when the ball collides with the dead zone
     private void ResetLevel()
     {
         this.ball.ResetBall();
         this.paddle.ResetPaddle();
     }
 
+    // when all 3 lives are used this function is called and the GameOver scene is loaded
     private void GameOver()
     {
         Debug.Log("GAME OVER!!!!");
@@ -91,6 +98,11 @@ public class GameManager : MonoBehaviour
      
     }
 
+
+    /** This function handles the ball collision with dead zone scenerio, 
+        if the collision happens when the lives are more than 1 then the resetlvel method is called
+        else GameOver method is called
+     */
     public void Miss()
     {
         this.lives--;
