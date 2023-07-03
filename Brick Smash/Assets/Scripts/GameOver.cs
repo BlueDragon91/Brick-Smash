@@ -5,7 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    
+    private bool GamePaused;
+    public GameObject PauseMenuUI;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GamePaused)
+            {
+                resumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+    }
 
     public void ReplayLevel()
     {
@@ -18,5 +34,18 @@ public class GameOver : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-    
+
+    private void resumeGame()
+    {
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GamePaused = false;
+    }
+
+    private void PauseGame()
+    {
+        PauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GamePaused = true;
+    }
 }

@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
         NewGame();
     }
 
+    
+
     public void NewGame()
     {
         this.lives = 3;
