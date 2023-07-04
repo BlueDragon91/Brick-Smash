@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     //private GameOver GameO;
 
-    
+    // Always runs first when the script is loaded
     private void Awake()
     {
         
